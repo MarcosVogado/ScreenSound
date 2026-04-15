@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "Bash(dotnet run:*)",
+      "Bash(jobs -l)",
+      "Bash(dotnet ef:*)",
+      "Bash(Unblock-File \"C:\\\\Users\\\\marco\\\\OneDrive\\\\Documents\\\\work\\\\ScreenSound-Curso4-master\\\\ScreenSound-Curso4-master\\\\ScreenSound.API\\\\.config\\\\dotnet-tools.json\")",
+      "Bash(powershell.exe -Command \"Unblock-File 'C:\\\\Users\\\\marco\\\\OneDrive\\\\Documents\\\\work\\\\ScreenSound-Curso4-master\\\\ScreenSound-Curso4-master\\\\ScreenSound.API\\\\.config\\\\dotnet-tools.json'\")",
+      "Bash(dotnet tool:*)",
+      "Bash(powershell.exe -Command \"Stop-Process -Id 1124 -Force -ErrorAction SilentlyContinue; Get-Process -Name 'ScreenSound.API' -ErrorAction SilentlyContinue | Stop-Process -Force\")"
+    ]
+  }
+}
