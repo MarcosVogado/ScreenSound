@@ -14,7 +14,7 @@ public static class ArtistasExtensions
             .RequireAuthorization()
             .WithTags("Artistas");
 
-        // GET /artistas/artistas
+        // GET /artistas
 
         #region Endpoint Artistas
         groupBuilder.MapGet("", ([FromServices] DAL<Artista> dal) =>
