@@ -26,8 +26,8 @@
     private string? email;
     private string? senha;
 
-    private void FazerLogin()
+    private async Task FazerLogin()
     {
-        // Lógica de autenticação aqui
+        await AuthAPI.LoginAsync(email, senha);
     }
 }
