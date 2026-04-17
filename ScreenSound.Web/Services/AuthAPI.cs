@@ -10,7 +10,7 @@ public class AuthAPI(IHttpClientFactory factory)
     
     public async Task<AuthResponse> LoginAsync(string email, string senha)
     {
-        var response = await _HttpClient.PostAsJsonAsync("auth/login", new
+        var response = await _HttpClient.PostAsJsonAsync("auth/login?useCookies=true", new
         {
             email,
             password = senha
