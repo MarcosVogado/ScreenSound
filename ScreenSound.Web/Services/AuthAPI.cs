@@ -14,10 +14,12 @@ public class AuthAPI(IHttpClientFactory factory) : AuthenticationStateProvider
     {
         var pessoa = new ClaimsPrincipal();
 
-        var info = await _HttpClient.GetFromJsonAsync<InfoPessoaResponse>("auth/manage/info");
+        var response = await _HttpClient.GetAsync("auth/manage/info");
 
-        if(info is not null)
+        if (response.IsSuccessStatusCode)
         {
+            var info = await response.Content.ReadFromJsonAsync<InfoPessoaResponse>();
+
             Claim[] dados =
             [
                 new Claim(ClaimTypes.Name, info.Email),
@@ -41,6 +43,7 @@ public class AuthAPI(IHttpClientFactory factory) : AuthenticationStateProvider
 
         if (response.IsSuccessStatusCode)
         {
+            NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
             return new AuthResponse { Sucesso = true };
         }
 
