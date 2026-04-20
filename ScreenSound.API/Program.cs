@@ -29,9 +29,11 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddAuthorization();
 
+builder.Services.AddTransient<DAL<PessoaComAcesso>>();
 builder.Services.AddTransient<DAL<Artista>>();
 builder.Services.AddTransient<DAL<Musica>>();
 builder.Services.AddTransient<DAL<Genero>>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
