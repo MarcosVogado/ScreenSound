@@ -115,6 +115,31 @@ public static class ArtistasExtensions
             return Results.Created();
         });
 
+        groupBuilder.MapGet("{id}/avaliacao", 
+        (
+            int id,
+            HttpContext context,
+            [FromServices] DAL<Artista> dalArtista,
+            [FromServices] DAL<PessoaComAcesso> dalPessoa
+        ) =>
+        {
+            var artista = dalArtista.RecuperarPor(a => a.Id == id);
+            if (artista is null) return Results.NotFound();
+            var email = context.User.Claims
+                .FirstOrDefault(c => c.Type.Equals(ClaimTypes.Email))?.Value
+                ?? throw new InvalidOperationException("Não foi encontrado o email da pessoa logada");
+
+            var pessoa = dalPessoa.RecuperarPor(p => p.Email!.Equals(email))
+                ?? throw new InvalidOperationException("Não foi encontrado o email da pessoa logada");
+
+            var avaliacao = artista
+                .Avaliacoes
+                .FirstOrDefault(a => a.ArtistaId == id && a.PessoaId == pessoa.Id);
+
+            if (avaliacao is null) return Results.Ok(new AvaliacaoArtistaResponse(id, 0));
+            else return Results.Ok(new AvaliacaoArtistaResponse(id, avaliacao.Nota));
+        });
+
         #endregion
     }
 
