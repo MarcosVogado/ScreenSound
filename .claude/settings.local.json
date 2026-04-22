@@ -8,7 +8,8 @@
       "Bash(Unblock-File \"C:\\\\Users\\\\marco\\\\OneDrive\\\\Documents\\\\work\\\\ScreenSound-Curso4-master\\\\ScreenSound-Curso4-master\\\\ScreenSound.API\\\\.config\\\\dotnet-tools.json\")",
       "Bash(powershell.exe -Command \"Unblock-File 'C:\\\\Users\\\\marco\\\\OneDrive\\\\Documents\\\\work\\\\ScreenSound-Curso4-master\\\\ScreenSound-Curso4-master\\\\ScreenSound.API\\\\.config\\\\dotnet-tools.json'\")",
       "Bash(dotnet tool:*)",
-      "Bash(powershell.exe -Command \"Stop-Process -Id 1124 -Force -ErrorAction SilentlyContinue; Get-Process -Name 'ScreenSound.API' -ErrorAction SilentlyContinue | Stop-Process -Force\")"
+      "Bash(powershell.exe -Command \"Stop-Process -Id 1124 -Force -ErrorAction SilentlyContinue; Get-Process -Name 'ScreenSound.API' -ErrorAction SilentlyContinue | Stop-Process -Force\")",
+      "Bash(xxd \"C:/Users/marco/OneDrive/Documents/work/ScreenSound-Curso4-master/ScreenSound-Curso4-master/ScreenSound.API/wwwroot/FotosPerfil/011220230720.Bruce Jones.jpg\")"
     ]
   }
 }
