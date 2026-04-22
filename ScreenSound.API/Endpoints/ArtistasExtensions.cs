@@ -97,8 +97,8 @@ public static class ArtistasExtensions
             var email = context.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value 
             ?? throw new InvalidOperationException("Pessoa não está conectada");
 
-            var pessoa = dalPessoa.RecuperarPor(p => p.Email.ToUpper().Equals(email))
-            ?? throw new InvalidOperationException("Pessoa não está conectada"); ;
+            var pessoa = dalPessoa.RecuperarPor(p => p.Email!.Equals(email, StringComparison.OrdinalIgnoreCase))
+            ?? throw new InvalidOperationException("Pessoa não está conectada");
 
             var avaliacao = artista.Avaliacoes.FirstOrDefault(a => a.ArtistaId == artista.Id && a.PessoaId == pessoa.Id);
 
@@ -110,7 +110,7 @@ public static class ArtistasExtensions
                 avaliacao.Nota = request.Nota;
             }
 
-            dalArtista.Atualizar(artista);
+            dalArtista.Salvar();
 
             return Results.Created();
         });
@@ -150,7 +150,14 @@ public static class ArtistasExtensions
 
     private static ArtistaResponse EntityToResponse(Artista artista)
     {
-        return new ArtistaResponse(artista.Id, artista.Nome, artista.Bio, artista.FotoPerfil);
+        return new ArtistaResponse(artista.Id, artista.Nome, artista.Bio, artista.FotoPerfil)
+        {
+            Classificacao = artista
+                .Avaliacoes
+                .Select(a => a.Nota)
+                .DefaultIfEmpty(0)
+                .Average()
+        };
     }
 
   
